@@ -76,7 +76,8 @@ class GroupService {
             }
 
             groupToAdd.users.push(user._id);
-            
+            user.groups?.push(groupToAdd._id);
+            await user.save();
             await groupToAdd.save();
         }catch(error){
             throw error;
@@ -102,7 +103,8 @@ class GroupService {
                 }
 
                 group.users = group.users.filter((user) => user !== userToRemove._id);
-
+                userToRemove.groups = userToRemove.groups?.filter((group) => group !== id);
+                await userToRemove.save();
                 await group.save();
             }catch(error){
                 throw error;

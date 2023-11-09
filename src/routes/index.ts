@@ -34,7 +34,7 @@ const routes = (app: Express) => {
 
 
     //Add a user to a group
-    app.put("/groups/add/:id",authServices.auth ,groupController.addMember);
+    app.patch("/groups/add/:id",authServices.auth ,groupController.addMember);
 
     //Remove a user from a group
     app.put("/groups/remove/:id/user/:userId",authServices.auth ,groupController.removeMember);
