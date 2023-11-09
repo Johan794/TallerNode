@@ -22,7 +22,7 @@ const auth = async (req:Request,res:Response,next: NextFunction) => {
 
 const generateToken = (user: UserDocument) => {
     try{
-        const token = jwt.sign({ email: user.email },secretKey , {
+        const token = jwt.sign({ email: user.email , role: user.role },secretKey , {
           expiresIn: "24h",
         });
         return token;
