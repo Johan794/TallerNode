@@ -8,14 +8,10 @@ const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 routes(app);
-const port: number = parseInt(process.env.PORT || "") || 3000;
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+const port: number = parseInt(process.env.PORT || "") || 8000;
 
 db.then(() => {
   app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`App listening at http://localhost:${port}`);
   });
 });

@@ -8,7 +8,7 @@ const routes = (app: Express) => {
     app.post("/login", userController.login);
 
     //C
-    app.post("/users", authServices.auth,authServices.verifryUserRole("superadmin"),userController.create);
+    app.post("/users", authServices.auth,authServices.hasAnyRole("superadmin"),userController.create);
     app.post("/groups", authServices.auth,groupController.create);
 
     //R
