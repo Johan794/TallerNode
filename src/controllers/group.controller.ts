@@ -76,16 +76,15 @@ class GroupController {
   public async addMember(req: Request, res: Response): Promise<Response> {
     try {
       await groupService.addMember(req.params.id, req.body);
-
       return res.status(200).json({ message: "Member added to group" });
     } catch (error) {
-      return res.status(500).json({ error: error });
+      return res.status(500).json( error );
     }
   }
 
   public async removeMember(req: Request, res: Response): Promise<Response> {
     try {
-      await groupService.removeMember(req.params.id, req.params.userId);
+      await groupService.removeMember(req.params.groupId, req.params.userId);
       return res.status(200).json({ message: "Member removed from group" });
     } catch (error) {
       return res.status(500).json({ error: error });

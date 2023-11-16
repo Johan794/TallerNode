@@ -26,6 +26,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
       token = refreshToken(token);
     }
 
+    
     const decoded = jwt.verify(token, secretKey);
     req.body.loggedUser = decoded;
 

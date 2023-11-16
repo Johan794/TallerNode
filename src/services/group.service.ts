@@ -61,6 +61,7 @@ class GroupService {
     //add members to group it finds the group by id and then adds the user to the group
     public async addMember(id: string, userInput: UserInput): Promise<void> {
         try{
+            console.log("Entro al metodo agregar miembro") 
             const user = await UserModel.findOne({name: userInput.name});
             if(!user){
                 throw new Error("User not found");
@@ -101,11 +102,12 @@ class GroupService {
                 if(!group.users.includes(userToRemove._id)){
                     throw new Error("User not in group");
                 }
-
-                group.users = group.users.filter((user) => user !== userToRemove._id);
-                userToRemove.groups = userToRemove.groups?.filter((group) => group !== id);
-                await userToRemove.save();
-                await group.save();
+                const deletedAtUsers = await GroupModel.updateOne({_id: id}, {$pull: {users: userToRemove._id}});
+                const deletedAtGroups = await UserModel.updateOne({_id: userId}, {$pull: {groups: group._id}});
+                
+                if(!deletedAtGroups || !deletedAtUsers){
+                    throw new Error("Error during the trasanction");
+                }
             }catch(error){
                 throw error;
             }

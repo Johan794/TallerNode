@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 dotenv.config();
 
 //database connection url 
-const connectionString = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/NodeBackDB";
+const connectionString = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/AppDB";
 
 //database connection
 export const db = mongoose.connect(connectionString).then(() => {
