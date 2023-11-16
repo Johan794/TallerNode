@@ -221,7 +221,7 @@ npm start
   - Ruta: `/groups/users/:userName`
   - Descripción: Obtiene la lista de grupos a los que un usuario específico está asociado.
  ```
-  GET /users/groups/G1
+  GET /groups/users/leobusar
   ```
  ## Autenticación y Autorización
 
